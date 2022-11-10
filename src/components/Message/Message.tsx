@@ -9,20 +9,37 @@ interface MessageProps {
 
 const Message = ({ text }: MessageProps) => {
   const [areActionItemsVisible, setAreActionItemsVisible] = useState(true);
+  const [areEmojiReactionsVisible, setAreEmojiReactionsVisible] =
+    useState(false);
+  const [activeEmoji, setActiveEmoji] = useState<string | null>(null);
 
-  const onSmileActionItemClick = () => {};
+  const onSmileActionItemClick = (open: boolean) => {
+    setAreEmojiReactionsVisible(open);
+
+    if (!open) {
+      setAreActionItemsVisible(false);
+    }
+  };
 
   const onReplyActionItemClick = () => {};
 
   const onMoreActionItemClick = () => {};
 
+  const onClose = () => {
+    if (areEmojiReactionsVisible) {
+      return;
+    }
+
+    setAreActionItemsVisible(false);
+  };
+
   return (
-    <div
-      className={styles.container}
-      onMouseLeave={() => setAreActionItemsVisible(false)}
-    >
+    <div className={styles.container} onMouseLeave={onClose}>
       <ActionItems
         className={clsx({ [styles.hidden]: !areActionItemsVisible })}
+        activeEmoji={activeEmoji}
+        setActiveEmoji={setActiveEmoji}
+        areEmojiReactionsVisible={areEmojiReactionsVisible}
         onSmileActionItemClick={onSmileActionItemClick}
         onReplyActionItemClick={onReplyActionItemClick}
         onMoreActionItemClick={onMoreActionItemClick}

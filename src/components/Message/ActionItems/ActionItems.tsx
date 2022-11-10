@@ -4,25 +4,39 @@ import { ReactComponent as ReplyActionItemIcon } from "../../../assets/reply-act
 import { ReactComponent as MoreActionItemIcon } from "../../../assets/more-action-item.svg";
 
 import styles from "./styles/ActionItems.module.scss";
+import EmojiReactions from "../EmojiReactions/EmojiReactions";
 
 interface ActionItemsProps {
   className?: string;
-  onSmileActionItemClick: () => void;
+  activeEmoji: string | null;
+  setActiveEmoji: (activeEmoji: string | null) => void;
+  areEmojiReactionsVisible: boolean;
+  onSmileActionItemClick: (open: boolean) => void;
   onReplyActionItemClick: () => void;
   onMoreActionItemClick: () => void;
 }
 
 const ActionItems = ({
   className,
+  activeEmoji,
+  setActiveEmoji,
+  areEmojiReactionsVisible,
   onSmileActionItemClick,
   onReplyActionItemClick,
   onMoreActionItemClick,
 }: ActionItemsProps) => {
   return (
     <div className={clsx(styles.container, className)}>
+      {areEmojiReactionsVisible && (
+        <EmojiReactions
+          activeEmoji={activeEmoji}
+          setActiveEmoji={setActiveEmoji}
+          onClickOutside={() => onSmileActionItemClick(false)}
+        />
+      )}
       <SmileActionItemIcon
         className={styles.actionItem}
-        onClick={onSmileActionItemClick}
+        onClick={() => onSmileActionItemClick(true)}
       />
       <ReplyActionItemIcon
         className={styles.actionItem}

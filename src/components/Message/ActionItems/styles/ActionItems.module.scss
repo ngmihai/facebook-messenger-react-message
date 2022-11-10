@@ -2,17 +2,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  position: relative;
 }
 
 .actionItem {
-  height: 20px;
-  width: 20px;
-
+  height: 26px;
+  width: 26px;
   color: lightslategray;
   border-radius: 100%;
   padding: 4px;
 
   &:hover {
     background-color: lightgray;
+    cursor: pointer;
   }
 }
