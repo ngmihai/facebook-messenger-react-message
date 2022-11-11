@@ -1,16 +1,7 @@
-import ReactDOM from "react-dom";
-
 import EmojiReaction from "./EmojiReaction/EmojiReaction";
 import { EmojiReactionsData } from "./constants";
 import styles from "./styles/EmojiReactions.module.scss";
-
-interface BackdropProps {
-  onClick: () => void;
-}
-
-const Backdrop = ({ onClick }: BackdropProps) => {
-  return <div className={styles.backdrop} onClick={onClick} />;
-};
+import useOutsideClick from "../../../hooks/useOutsideclick";
 
 interface EmojiReactionsProps {
   activeEmoji: string | null;
@@ -23,6 +14,8 @@ const EmojiReactions = ({
   setActiveEmoji,
   onClose,
 }: EmojiReactionsProps) => {
+  const containerRef = useOutsideClick<HTMLDivElement>(onClose);
+
   const onEmojiChange = (newEmoji: string) => {
     if (newEmoji === activeEmoji) {
       setActiveEmoji(null);
@@ -34,23 +27,17 @@ const EmojiReactions = ({
   };
 
   return (
-    <>
-      {ReactDOM.createPortal(
-        <Backdrop onClick={onClose} />,
-        document.getElementById("backdrop")!
-      )}
-      <div className={styles.container}>
-        {EmojiReactionsData.map((emojiReactionData) => (
-          <EmojiReaction
-            src={emojiReactionData.src}
-            alt={emojiReactionData.alt}
-            key={emojiReactionData.src}
-            active={activeEmoji === emojiReactionData.src}
-            onClick={() => onEmojiChange(emojiReactionData.src)}
-          />
-        ))}
-      </div>
-    </>
+    <div ref={containerRef} className={styles.container}>
+      {EmojiReactionsData.map((emojiReactionData) => (
+        <EmojiReaction
+          src={emojiReactionData.src}
+          alt={emojiReactionData.alt}
+          key={emojiReactionData.src}
+          active={activeEmoji === emojiReactionData.src}
+          onClick={() => onEmojiChange(emojiReactionData.src)}
+        />
+      ))}
+    </div>
   );
 };
 
