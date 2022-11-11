@@ -17,7 +17,7 @@ const EmojiReactions = ({
 }: EmojiReactionsProps) => {
   const containerRef = useOutsideClick<HTMLDivElement>(onClose);
 
-  const onEmojiChange = (newEmoji: string) => {
+  const onSelectEmoji = (newEmoji: string) => {
     if (newEmoji === activeEmoji) {
       setActiveEmoji(null);
     } else {
@@ -35,7 +35,7 @@ const EmojiReactions = ({
           alt={emojiReactionData.alt}
           key={emojiReactionData.src}
           active={activeEmoji === emojiReactionData.src}
-          onClick={() => onEmojiChange(emojiReactionData.src)}
+          onClick={() => onSelectEmoji(emojiReactionData.src)}
         />
       ))}
     </div>

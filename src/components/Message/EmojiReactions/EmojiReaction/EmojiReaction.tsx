@@ -19,11 +19,11 @@ const EmojiReaction = ({
 }: EmojiReactionProps) => {
   return (
     <div
-      className={clsx(styles.emojiContainer, {
+      className={clsx(styles.emojiContainer, className, {
         [styles.active]: active,
       })}
     >
-      <img src={src} alt={alt} className={className} onClick={onClick} />
+      <img src={src} alt={alt} onClick={onClick} />
     </div>
   );
 };

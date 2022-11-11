@@ -1,9 +1,9 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 8rem;
-  text-align: center;
+.App {
+  height: calc(100% - 2rem);
+  width: calc(100% - 2 * 2rem);
 
-  display: flex;
-  justify-content: center;
+  border: 1px solid lightgray;
+  border-radius: 18px;
+  margin: 0;
+  padding: 2rem;
 }

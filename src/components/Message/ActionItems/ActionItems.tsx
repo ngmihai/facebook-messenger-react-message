@@ -4,7 +4,6 @@ import { ReactComponent as ReplyActionItemIcon } from "src/assets/reply-action-i
 import { ReactComponent as MoreActionItemIcon } from "src/assets/more-action-item.svg";
 
 import EmojiReactions from "../EmojiReactions/EmojiReactions";
-
 import styles from "./styles/ActionItems.module.scss";
 
 interface ActionItemsProps {

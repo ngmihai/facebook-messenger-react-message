@@ -5,11 +5,17 @@ import ActionItems from "./ActionItems/ActionItems";
 import EmojiReaction from "./EmojiReactions/EmojiReaction/EmojiReaction";
 import styles from "./styles/Message.module.scss";
 
-interface MessageProps {
-  text: string;
+export enum MessageAlignment {
+  LEFT = "left",
+  RIGHT = "right",
 }
 
-const Message = ({ text }: MessageProps) => {
+interface MessageProps {
+  text: string;
+  align?: MessageAlignment;
+}
+
+const Message = ({ text, align = MessageAlignment.RIGHT }: MessageProps) => {
   const [areActionItemsVisible, setAreActionItemsVisible] = useState(false);
   const [areEmojiReactionsVisible, setAreEmojiReactionsVisible] =
     useState(false);
@@ -23,9 +29,13 @@ const Message = ({ text }: MessageProps) => {
     }
   };
 
-  const onReplyActionItemClick = () => {};
+  const onReplyActionItemClick = () => {
+    // TODO: implement reply action based on the current text
+  };
 
-  const onMoreActionItemClick = () => {};
+  const onMoreActionItemClick = () => {
+    // TODO: implement more actions
+  };
 
   const onClose = () => {
     if (areEmojiReactionsVisible) {
@@ -39,6 +49,7 @@ const Message = ({ text }: MessageProps) => {
     <div
       className={clsx(styles.container, {
         [styles.activeEmojiSpacer]: !!activeEmoji,
+        [styles.left]: align === MessageAlignment.LEFT,
       })}
       onMouseLeave={onClose}
     >
@@ -53,7 +64,9 @@ const Message = ({ text }: MessageProps) => {
       />
       <div className={styles.anchor}>
         <div
-          className={styles.messageContainer}
+          className={clsx(styles.messageContainer, {
+            [styles.left]: align === MessageAlignment.LEFT,
+          })}
           onMouseEnter={() => setAreActionItemsVisible(true)}
         >
           {text}

@@ -1,11 +1,16 @@
 .container {
   display: flex;
+  justify-content: flex-end;
   column-gap: 8px;
 
   margin-bottom: 2px;
 
   &.activeEmojiSpacer {
     margin-bottom: 16px;
+  }
+
+  &.left {
+    flex-direction: row-reverse;
   }
 }
 
@@ -20,6 +25,11 @@
   width: fit-content;
   padding: 8px 12px;
   border-radius: 18px;
+
+  &.left {
+    background-color: #e4e6eb;
+    color: #050505;
+  }
 }
 
 .hidden {
@@ -41,6 +51,8 @@
 }
 
 .activeEmoji {
-  height: 16px;
-  width: 16px;
+  & > img {
+    height: 16px;
+    width: 16px;
+  }
 }
