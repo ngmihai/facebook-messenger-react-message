@@ -11,6 +11,7 @@ const App = () => {
         align={MessageAlignment.LEFT}
       />
       <Message text="Thank you! 😇" align={MessageAlignment.LEFT} />
+      <Message text="You can change the way people experience life! 🌞" />
     </div>
   );
 };
