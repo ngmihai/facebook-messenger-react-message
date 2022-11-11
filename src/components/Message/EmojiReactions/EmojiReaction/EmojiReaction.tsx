@@ -6,24 +6,25 @@ export interface EmojiReactionProps {
   src: string;
   alt: string;
   active?: boolean;
-  onClick: () => void;
+  className?: string;
+  onClick?: () => void;
 }
 
 const EmojiReaction = ({
   src,
   alt,
+  className,
   active = false,
   onClick,
 }: EmojiReactionProps) => {
   return (
-    <img
-      src={src}
-      alt={alt}
-      className={clsx(styles.emoji, {
+    <div
+      className={clsx(styles.emojiContainer, {
         [styles.active]: active,
       })}
-      onClick={onClick}
-    />
+    >
+      <img src={src} alt={alt} className={className} onClick={onClick} />
+    </div>
   );
 };
 

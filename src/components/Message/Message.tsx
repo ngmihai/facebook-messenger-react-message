@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import ActionItems from "./ActionItems/ActionItems";
+import EmojiReaction from "./EmojiReactions/EmojiReaction/EmojiReaction";
 import styles from "./styles/Message.module.scss";
 
 interface MessageProps {
@@ -8,7 +9,7 @@ interface MessageProps {
 }
 
 const Message = ({ text }: MessageProps) => {
-  const [areActionItemsVisible, setAreActionItemsVisible] = useState(true);
+  const [areActionItemsVisible, setAreActionItemsVisible] = useState(false);
   const [areEmojiReactionsVisible, setAreEmojiReactionsVisible] =
     useState(false);
   const [activeEmoji, setActiveEmoji] = useState<string | null>(null);
@@ -34,7 +35,12 @@ const Message = ({ text }: MessageProps) => {
   };
 
   return (
-    <div className={styles.container} onMouseLeave={onClose}>
+    <div
+      className={clsx(styles.container, {
+        [styles.activeEmojiSpacer]: !!activeEmoji,
+      })}
+      onMouseLeave={onClose}
+    >
       <ActionItems
         className={clsx({ [styles.hidden]: !areActionItemsVisible })}
         activeEmoji={activeEmoji}
@@ -44,11 +50,22 @@ const Message = ({ text }: MessageProps) => {
         onReplyActionItemClick={onReplyActionItemClick}
         onMoreActionItemClick={onMoreActionItemClick}
       />
-      <div
-        className={styles.messageContainer}
-        onMouseEnter={() => setAreActionItemsVisible(true)}
-      >
-        <span>{text}</span>
+      <div className={styles.anchor}>
+        <div
+          className={styles.messageContainer}
+          onMouseEnter={() => setAreActionItemsVisible(true)}
+        >
+          {text}
+        </div>
+        {activeEmoji && (
+          <div className={styles.activeEmojiContainer}>
+            <EmojiReaction
+              src={activeEmoji}
+              alt="active-emoji"
+              className={styles.activeEmoji}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

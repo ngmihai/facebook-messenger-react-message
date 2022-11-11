@@ -1,8 +1,8 @@
 import ReactDOM from "react-dom";
 
-import styles from "./styles/EmojiReactions.module.scss";
 import EmojiReaction from "./EmojiReaction/EmojiReaction";
 import { EmojiReactionsData } from "./constants";
+import styles from "./styles/EmojiReactions.module.scss";
 
 interface BackdropProps {
   onClick: () => void;
@@ -15,13 +15,13 @@ const Backdrop = ({ onClick }: BackdropProps) => {
 interface EmojiReactionsProps {
   activeEmoji: string | null;
   setActiveEmoji: (activeEmoji: string | null) => void;
-  onClickOutside: () => void;
+  onClose: () => void;
 }
 
 const EmojiReactions = ({
   activeEmoji,
   setActiveEmoji,
-  onClickOutside,
+  onClose,
 }: EmojiReactionsProps) => {
   const onEmojiChange = (newEmoji: string) => {
     if (newEmoji === activeEmoji) {
@@ -29,12 +29,14 @@ const EmojiReactions = ({
     } else {
       setActiveEmoji(newEmoji);
     }
+
+    onClose();
   };
 
   return (
     <>
       {ReactDOM.createPortal(
-        <Backdrop onClick={onClickOutside} />,
+        <Backdrop onClick={onClose} />,
         document.getElementById("backdrop")!
       )}
       <div className={styles.container}>
@@ -42,6 +44,7 @@ const EmojiReactions = ({
           <EmojiReaction
             src={emojiReactionData.src}
             alt={emojiReactionData.alt}
+            key={emojiReactionData.src}
             active={activeEmoji === emojiReactionData.src}
             onClick={() => onEmojiChange(emojiReactionData.src)}
           />

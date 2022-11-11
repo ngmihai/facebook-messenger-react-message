@@ -4,7 +4,10 @@ import Message from "./components/Message/Message";
 function App() {
   return (
     <div className="App">
-      <Message text="sjhji" />
+      <Message text="This is a test message." />
+      <Message text="This is a test message." />
+      <Message text="This is a test message." />
+      <Message text="This is a test message." />
     </div>
   );
 }
