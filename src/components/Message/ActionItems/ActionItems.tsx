@@ -1,7 +1,8 @@
 import clsx from "clsx";
-import { ReactComponent as SmileActionItemIcon } from "../../../assets/smile-action-item.svg";
-import { ReactComponent as ReplyActionItemIcon } from "../../../assets/reply-action-item.svg";
-import { ReactComponent as MoreActionItemIcon } from "../../../assets/more-action-item.svg";
+import { ReactComponent as SmileActionItemIcon } from "src/assets/smile-action-item.svg";
+import { ReactComponent as ReplyActionItemIcon } from "src/assets/reply-action-item.svg";
+import { ReactComponent as MoreActionItemIcon } from "src/assets/more-action-item.svg";
+
 import EmojiReactions from "../EmojiReactions/EmojiReactions";
 
 import styles from "./styles/ActionItems.module.scss";

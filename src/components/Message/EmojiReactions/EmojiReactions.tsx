@@ -1,7 +1,8 @@
+import useOutsideClick from "src/hooks/useOutsideclick";
+
 import EmojiReaction from "./EmojiReaction/EmojiReaction";
 import { EmojiReactionsData } from "./constants";
 import styles from "./styles/EmojiReactions.module.scss";
-import useOutsideClick from "../../../hooks/useOutsideclick";
 
 interface EmojiReactionsProps {
   activeEmoji: string | null;

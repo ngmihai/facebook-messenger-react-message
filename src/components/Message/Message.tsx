@@ -1,5 +1,6 @@
-import clsx from "clsx";
 import { useState } from "react";
+import clsx from "clsx";
+
 import ActionItems from "./ActionItems/ActionItems";
 import EmojiReaction from "./EmojiReactions/EmojiReaction/EmojiReaction";
 import styles from "./styles/Message.module.scss";

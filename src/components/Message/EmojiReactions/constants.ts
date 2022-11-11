@@ -1,8 +1,8 @@
-import HeartImage from "../../../assets/heart.png";
-import LaughImage from "../../../assets/laugh.png";
-import WowImage from "../../../assets/wow.png";
-import AngryImage from "../../../assets/angry.png";
-import ThumbsupImage from "../../../assets/thumbsup.png";
+import HeartImage from "src/assets/heart.png";
+import LaughImage from "src/assets/laugh.png";
+import WowImage from "src/assets/wow.png";
+import AngryImage from "src/assets/angry.png";
+import ThumbsupImage from "src/assets/thumbsup.png";
 
 import { EmojiReactionProps } from "./EmojiReaction/EmojiReaction";
 
